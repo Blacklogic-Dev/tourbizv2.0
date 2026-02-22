@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Assistant Terms - TourBiz Zone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+
+<body class="min-h-screen bg-gradient-to-b from-purple-500 via-purple-800 to-[#2a0a3d] p-4 flex flex-col items-center">
+
+<!-- Top Banner -->
+<div class="w-full h-[300px] bg-white/20 backdrop-blur-md shadow-lg flex items-center justify-center mb-6">
+  <img src="gemini.png" alt="TourBiz Zone Logo" class="h-[180px] object-contain animate-breathe"/>
+</div>
+
+<style>
+@keyframes breathe { 0%,100%{transform:scale(1);}50%{transform:scale(1.05);} }
+.animate-breathe { animation: breathe 4s ease-in-out infinite; }
+.form-input {
+  background-color: rgba(255,255,255,0.2);
+  backdrop-filter: blur(5px);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: white;
+  width: 100%;
+}
+</style>
+
+<!-- Main Card -->
+<div class="bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl max-w-3xl w-full p-8">
+
+  <h1 class="text-2xl font-bold mb-4 text-white">
+    TourBiz Zone AI Assistant – Terms & Conditions
+  </h1>
+
+  <p class="text-purple-200 text-sm mb-6">
+    Powered by <strong>BlackLogic Technologies</strong> × <strong>Google Gemini</strong>
+  </p>
+
+  <form id="termsForm" class="space-y-4">
+
+    <!-- Student Credentials -->
+    <input type="text" placeholder="Student ID" class="form-input" required>
+    <input type="password" placeholder="Password" class="form-input" required>
+
+    <p class="text-white font-semibold mt-6 mb-2">
+      User Agreement (6)
+    </p>
+
+    <div class="space-y-3">
+
+      <div class="flex items-start gap-3">
+        <input type="checkbox" class="w-5 h-5 accent-purple-600 mt-1"/>
+        <label class="text-white text-sm">I will use the AI for educational and business purposes only.</label>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <input type="checkbox" class="w-5 h-5 accent-purple-600 mt-1"/>
+        <label class="text-white text-sm">I will not use AI to scam, mislead, or exploit others.</label>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <input type="checkbox" class="w-5 h-5 accent-purple-600 mt-1"/>
+        <label class="text-white text-sm">I understand AI responses may not always be accurate.</label>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <input type="checkbox" class="w-5 h-5 accent-purple-600 mt-1"/>
+        <label class="text-white text-sm">I will verify important business and tourism decisions independently.</label>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <input type="checkbox" class="w-5 h-5 accent-purple-600 mt-1"/>
+        <label class="text-white text-sm">I will maintain respectful communication.</label>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <input type="checkbox" class="w-5 h-5 accent-purple-600 mt-1"/>
+        <label class="text-white text-sm">I agree to all TourBiz Zone platform policies.</label>
+      </div>
+
+    </div>
+
+    <button
+      type="submit"
+      id="enterBtn"
+      class="w-full bg-white text-purple-900 font-semibold py-3 rounded-xl shadow-lg mt-6 disabled:opacity-50"
+      disabled
+    >
+      Enter TourBiz AI
+    </button>
+
+  </form>
+</div>
+
+<script>
+const form = document.getElementById('termsForm');
+const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+const enterBtn = document.getElementById('enterBtn');
+const inputs = form.querySelectorAll('input[type="text"], input[type="password"]');
+
+function validateForm(){
+  const allChecked = [...checkboxes].every(c => c.checked);
+  const allFilled = [...inputs].every(i => i.value.trim() !== "");
+  enterBtn.disabled = !(allChecked && allFilled);
+}
+
+checkboxes.forEach(cb => cb.addEventListener('change', validateForm));
+inputs.forEach(i => i.addEventListener('input', validateForm));
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  enterBtn.textContent = "Launching AI...";
+  setTimeout(() => {
+    window.location.href = "https://gemini.google.com/";
+  }, 1000);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TourBiz Zone Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    .hover-glow:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.25);
+    }
+    .transition-glow { transition: all 0.3s ease-in-out; }
+  </style>
+</head>
+
+<body class="bg-gray-900 min-h-screen flex flex-col">
+
+  <!-- Top Navbar -->
+  <nav class="flex items-center justify-between p-4 bg-white/10 backdrop-blur-md shadow-md z-20 relative">
+    <h1 class="text-white font-bold text-xl">TourBiz Zone</h1>
+    <button id="hamburger" class="text-white text-2xl md:hidden">
+      <i class="fas fa-bars"></i>
+    </button>
+  </nav>
+
+  <!-- Sidebar Drawer -->
+  <aside id="drawer" class="fixed top-0 left-0 w-64 h-full bg-white/10 backdrop-blur-md transform -translate-x-full transition-transform z-50 p-6 space-y-6 shadow-xl">
+    <button id="closeDrawer" class="absolute top-4 right-4 text-white text-2xl">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <ul class="space-y-6 text-white">
+      <li class="flex items-center gap-3 text-lg cursor-pointer hover:text-purple-400">
+        <a href="video.html" class="flex items-center gap-3 w-full">
+          <i class="fas fa-video"></i> Video Lessons
+        </a>
+      </li>
+
+      <li class="flex items-center gap-3 text-lg cursor-pointer hover:text-purple-400">
+        <a href="notes.html" class="flex items-center gap-3 w-full">
+          <i class="fas fa-book"></i> Study Notes
+        </a>
+      </li>
+
+      <li class="flex items-center gap-3 text-lg cursor-pointer hover:text-purple-400">
+        <a href="question.html" class="flex items-center gap-3 w-full">
+          <i class="fas fa-file-alt"></i> Question Papers
+        </a>
+      </li>
+
+      <li class="flex items-center gap-3 text-lg cursor-pointer hover:text-purple-400">
+        <a href="live.html" class="flex items-center gap-3 w-full">
+          <i class="fas fa-broadcast-tower"></i> Live Classes
+        </a>
+      </li>
+
+      <li class="flex items-center gap-3 text-lg cursor-pointer hover:text-purple-400">
+        <a href="assist.html" class="flex items-center gap-3 w-full">
+          <i class="fas fa-robot"></i> AI Tutor
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- Overlay -->
+  <div id="overlay" class="fixed inset-0 bg-black/50 hidden z-40"></div>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-8">
+
+    <!-- Banner -->
+    <div class="h-[300px] w-full rounded-3xl shadow-xl mb-8 overflow-hidden">
+      <img src="zone.png" alt="TourBiz Banner" class="w-full h-full object-cover">
+    </div>
+
+    <!-- Subject Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+      <!-- Business Studies -->
+      <div class="bg-white/10 rounded-2xl p-5 shadow-lg hover-glow transition-glow cursor-pointer text-center">
+        <i class="fas fa-briefcase text-5xl mb-3 text-white"></i>
+        <h2 class="font-bold text-white text-lg mb-1">Business Studies</h2>
+        <p class="text-white/80 text-sm">
+          Entrepreneurship, management, leadership and business strategy.
+        </p>
+      </div>
+
+      <!-- Mathematical Literacy -->
+      <div class="bg-white/10 rounded-2xl p-5 shadow-lg hover-glow transition-glow cursor-pointer text-center">
+        <i class="fas fa-calculator text-5xl mb-3 text-white"></i>
+        <h2 class="font-bold text-white text-lg mb-1">Mathematical Literacy</h2>
+        <p class="text-white/80 text-sm">
+          Real-life maths, financial literacy and practical calculations.
+        </p>
+      </div>
+
+      <!-- Accounting -->
+      <div class="bg-white/10 rounded-2xl p-5 shadow-lg hover-glow transition-glow cursor-pointer text-center">
+        <i class="fas fa-chart-line text-5xl mb-3 text-white"></i>
+        <h2 class="font-bold text-white text-lg mb-1">Accounting</h2>
+        <p class="text-white/80 text-sm">
+          Financial statements, bookkeeping, and business finance principles.
+        </p>
+      </div>
+
+      <!-- Tourism -->
+      <div class="bg-white/10 rounded-2xl p-5 shadow-lg hover-glow transition-glow cursor-pointer text-center">
+        <i class="fas fa-plane-departure text-5xl mb-3 text-white"></i>
+        <h2 class="font-bold text-white text-lg mb-1">Tourism</h2>
+        <p class="text-white/80 text-sm">
+          Tourism sectors, travel planning, and South African tourism studies.
+        </p>
+      </div>
+
+      <!-- AI Tutor -->
+      <div class="bg-white/10 rounded-2xl p-5 shadow-lg hover-glow transition-glow cursor-pointer text-center">
+        <i class="fas fa-robot text-5xl mb-3 text-white"></i>
+        <h2 class="font-bold text-white text-lg mb-1">AI Tutor</h2>
+        <p class="text-white/80 text-sm">
+          24/7 AI support for homework, explanations and exam preparation.
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Drawer JS -->
+  <script>
+    const drawer = document.getElementById('drawer');
+    const overlay = document.getElementById('overlay');
+
+    document.getElementById('hamburger').addEventListener('click', () => {
+      drawer.classList.remove('-translate-x-full');
+      overlay.classList.remove('hidden');
+    });
+
+    document.getElementById('closeDrawer').addEventListener('click', () => {
+      drawer.classList.add('-translate-x-full');
+      overlay.classList.add('hidden');
+    });
+
+    overlay.addEventListener('click', () => {
+      drawer.classList.add('-translate-x-full');
+      overlay.classList.add('hidden');
+    });
+  </script>
+
+</body>
+</html>

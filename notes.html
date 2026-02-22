@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TourBiz Zone - Textbooks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+
+<body class="min-h-screen bg-gradient-to-b from-purple-400 via-purple-700 to-[#2a0a3d]">
+
+  <!-- Top Banner -->
+  <div class="w-full h-[280px] bg-white/20 backdrop-blur-md flex items-center justify-center mb-6 shadow-lg rounded-b-3xl">
+    <img src="yellow.png" alt="TourBiz Zone Banner" class="h-[80%] object-contain"/>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Grade Tabs -->
+    <div class="flex gap-3 justify-center mb-8">
+      <button onclick="showGrade(9)" class="tab px-4 py-2 rounded-xl bg-purple-600 text-white font-semibold">Grade 9</button>
+      <button onclick="showGrade(10)" class="tab px-4 py-2 rounded-xl bg-white text-gray-800 font-semibold">Grade 10</button>
+      <button onclick="showGrade(11)" class="tab px-4 py-2 rounded-xl bg-white text-gray-800 font-semibold">Grade 11</button>
+      <button onclick="showGrade(12)" class="tab px-4 py-2 rounded-xl bg-white text-gray-800 font-semibold">Grade 12</button>
+    </div>
+
+    <!-- Subjects Container -->
+    <div id="subjectsContainer" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+
+  </div>
+
+  <!-- JS -->
+  <script>
+    const subjectsData = {
+      9: [
+        { name: "Economic & Management Sciences (EMS)", pdf: "https://www.cambridge.org/st/files/2815/8228/1278/Study___Master_Economic_and_Management_Sciences_Grade_9_Teacher_s_Guide.pdf" }
+      ],
+      10: [
+        { name: "Business Studies", pdf: "https://viaafrika.com/wp-content/uploads/2020/03/Gr10-Business-Studies-studyguide_LR.pdf" },
+        { name: "Mathematics Literacy", pdf: "https://viaafrika.com/wp-content/uploads/2019/07/Maths-Lit-G10-studyguide.pdf" },
+        { name: "Tourism", pdf: "https://viaafrika.com/wp-content/uploads/2019/07/Tourism-G10-studyguide.pdf" }
+      ],
+      11: [
+        { name: "Business Studies", pdf: "https://viaafrika.com/wp-content/uploads/2020/04/Gr11-Business-Studies-SG_LR.pdf" },
+        { name: "Mathematics Literacy", pdf: "https://viaafrika.com/wp-content/uploads/2019/07/Grade-11-Math-Lit-SG.pdf" },
+        { name: "Tourism", pdf: "https://viaafrika.com/wp-content/uploads/2019/07/Tourism-Study-Guide-Gr-11-Eng-29-7-2014.pdf" }
+      ],
+      12: [
+        { name: "Business Studies", pdf: "https://viaafrika.com/wp-content/uploads/2020/06/Gr12-Business-Studies-Study-Guide_LR.pdf" },
+        { name: "Mathematics Literacy", pdf: "https://viaafrika.com/wp-content/uploads/2019/07/Maths-Lit-12-sg.pdf" },
+        { name: "Tourism", pdf: "https://viaafrika.com/wp-content/uploads/2020/06/Gr12-Tourism-Study-Guide_LR.pdf" }
+      ]
+    };
+
+    const subjectsContainer = document.getElementById("subjectsContainer");
+    const tabs = document.querySelectorAll(".tab");
+
+    function showGrade(grade) {
+      tabs.forEach(tab => {
+        tab.classList.remove("bg-purple-600", "text-white");
+        tab.classList.add("bg-white", "text-gray-800");
+      });
+      tabs[grade - 9].classList.add("bg-purple-600", "text-white");
+
+      subjectsContainer.innerHTML = "";
+
+      subjectsData[grade].forEach(sub => {
+        const card = document.createElement("div");
+        card.className = "bg-white/20 backdrop-blur-md p-6 rounded-3xl shadow-lg flex flex-col items-center text-center transition hover:scale-105";
+        card.innerHTML = `
+          <i class="fas fa-book-open fa-3x mb-4 text-purple-300"></i>
+          <h3 class="text-xl font-bold mb-2 text-white">${sub.name}</h3>
+          <p class="text-sm text-white/80 mb-4">Access the official textbook</p>
+          <a href="${sub.pdf}" target="_blank"
+             class="px-4 py-2 bg-purple-600 text-white rounded-xl font-semibold hover:bg-purple-700 transition">
+             Open PDF
+          </a>
+        `;
+        subjectsContainer.appendChild(card);
+      });
+    }
+
+    // Default load
+    showGrade(9);
+  </script>
+
+</body>
+</html>
+
